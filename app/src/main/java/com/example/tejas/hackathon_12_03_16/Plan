@@ -1,0 +1,10 @@
+Create and Test Alarms
+Test getting times from firebase, convert them, and set them
+
+
+
+-- Functions --
+
+get set() working
+test setAndAllowWhileIdle()
+if have time, setTimeZone()
