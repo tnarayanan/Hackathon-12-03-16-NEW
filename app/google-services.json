@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "309512256565",
+    "firebase_url": "https://alarmdatabase-ee888.firebaseio.com",
+    "project_id": "alarmdatabase-ee888",
+    "storage_bucket": "alarmdatabase-ee888.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309512256565:android:850a34b2c3f5adce",
+        "android_client_info": {
+          "package_name": "com.example.tejas.hackathon_12_03_16"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309512256565-2h8lbjqoe96dt0lfj1d52oi1ojn5t8th.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tejas.hackathon_12_03_16",
+            "certificate_hash": "875A8D00355388AFE73D4E815013E0F453322005"
+          }
+        },
+        {
+          "client_id": "309512256565-mdf3egleqdn8bep7sok3260o1gstas18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ8t_Qc8xTH0Rh0qLvWYWHgZEFgpnC5vU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309512256565-mdf3egleqdn8bep7sok3260o1gstas18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
