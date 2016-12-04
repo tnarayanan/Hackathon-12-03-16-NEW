@@ -12,6 +12,7 @@ public class Alarm_Receiver extends IntentService {
     public Alarm_Receiver(String name) {
         super(name);
     }
+
     /* public void onHandleIntent (Intent intent) {
         Log.e("We are the receiver", "Yay");
 
