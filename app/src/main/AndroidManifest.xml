@@ -16,7 +16,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".SendActivity"></activity>
-        <activity android:name=".ReceiveActivity"></activity>
+        <activity android:name=".ReceiveActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service android:name=".Alarm_Receiver"></service>
     </application>
 
 </manifest>

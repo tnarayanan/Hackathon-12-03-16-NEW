@@ -20,8 +20,7 @@ public class ReceiveActivity extends AppCompatActivity {
 
     Button alarmButton;
 
-    final int hour = 16;
-    final int minute = 11;
+
     Context context;
     PendingIntent pendingIntent;
 
@@ -38,6 +37,8 @@ public class ReceiveActivity extends AppCompatActivity {
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         final Intent intent = new Intent(this.context, Alarm_Receiver.class);
 
+        final int hour = 16;
+        final int minute = 11;
 
         alarmButton.setOnClickListener(new View.OnClickListener() {
             @Override
