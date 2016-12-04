@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -19,6 +22,7 @@ public class SendActivity extends AppCompatActivity {
     Button send;
     CharSequence timeSet;
     public static ArrayList acceptedNames = new ArrayList<String>();
+    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     Boolean nameAccepted = false;
 
     @Override
@@ -67,8 +71,10 @@ public class SendActivity extends AppCompatActivity {
                         Toast toast = Toast.makeText(getApplicationContext(), hour + ":" + strMinute + timeSet + " to " + name.getText(), Toast.LENGTH_SHORT);
                         toast.show();
                         nameAccepted = false;
-                        Intent thing = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(thing);
+
+                        mDatabase.child("Hour").setValue(alarm.getHour());
+                        mDatabase.child("Minute").setValue(alarm.getMinute());
+
                     } else {
                         Toast toast = Toast.makeText(getApplicationContext(), name.getText().toString() + " isn't a registered user", Toast.LENGTH_SHORT);
                         toast.show();
