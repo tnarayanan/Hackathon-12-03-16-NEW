@@ -12,16 +12,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.sql.Time;
 
 public class ReceiveActivity extends AppCompatActivity {
-
+    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
     AlarmManager alarmManager;
 
     Button alarmButton;
 
-    final int hour = 16;
-    final int minute = 11;
     Context context;
     PendingIntent pendingIntent;
 
@@ -34,27 +38,59 @@ public class ReceiveActivity extends AppCompatActivity {
 
         this.context = this;
 
+
+
+        int hour;
+        int minute;
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int hour_inside = 0;
+                int minute_inside = 0;
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                    if(postSnapshot.getKey().equals("Hour")){
+                        hour_inside = Integer.parseInt(postSnapshot.getValue().toString());
+
+                    }else if(postSnapshot.getKey().equals("Minute")){
+                        minute_inside = Integer.parseInt(postSnapshot.getValue().toString());
+                    }
+                }
+                setAlarm(hour_inside, minute_inside);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+    }
+
+    public void setAlarm(int hour, int minute){
+        final int hour_this = hour;
+        final int minute_this = minute;
         final Calendar calendar = Calendar.getInstance();
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         final Intent intent = new Intent(this.context, Alarm_Receiver.class);
 
-
         alarmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calendar.set(Calendar.HOUR_OF_DAY, hour);
-                calendar.set(Calendar.MINUTE, minute);
+                calendar.set(Calendar.HOUR_OF_DAY, hour_this);
+                calendar.set(Calendar.MINUTE, minute_this);
                 pendingIntent = PendingIntent.getBroadcast(ReceiveActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                 int currHour, currMin;
                 do {
                     currHour = new Time(System.currentTimeMillis()).getHours();
                     currMin = new Time(System.currentTimeMillis()).getMinutes();
-                } while (currHour * 60 + currMin < hour * 60 + minute + (5/60));
+                } while (currHour * 60 + currMin < hour_this * 60 + minute_this + (5/60));
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
 
             }
         });
-
     }
 }
